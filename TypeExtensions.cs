@@ -19,5 +19,12 @@ namespace Extensions
 
             return (Func<object>)dynamic.CreateDelegate(typeof(Func<object>));
         }
+        
+        public static bool IsPrimitiveValue(this Type type)
+        {
+            return type == typeof(String) ||
+                type.IsValueType ||
+                type == typeof(Enum);
+        }
     }
 }
