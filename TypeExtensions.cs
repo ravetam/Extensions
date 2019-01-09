@@ -5,7 +5,7 @@ namespace Extensions
 {
     public static class TypeExtensions
     {
-        public static Func<object> GetCreateInstanceFn(this Type type)
+        public static Func<T> GetCreateInstanceFn<T>(this Type type)
         {
             var ctor = type.GetConstructor(Type.EmptyTypes);
             var dynamic = new DynamicMethod(string.Empty, type, Type.EmptyTypes, type);
@@ -17,7 +17,7 @@ namespace Extensions
             il.Emit(OpCodes.Ldloc_0);
             il.Emit(OpCodes.Ret);
 
-            return (Func<object>)dynamic.CreateDelegate(typeof(Func<object>));
+            return (Func<T>)dynamic.CreateDelegate(typeof(Func<T>));
         }
         
         public static bool IsPrimitiveValue(this Type type)
