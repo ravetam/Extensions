@@ -1,0 +1,17 @@
+using System;
+using System.Reflection;
+
+namespace Extensions
+{
+    public static class AssemblyExtensions
+    {
+        public static TInterface[] GetInstances<TInterface>(this Assembly assembly)
+        {
+            return assembly
+                .GetTypes()
+                .Where(t => typeof(TInterface).IsAssignableFrom(t) && t != typeof(TInterface))
+                .Select(t => GetCreateInstanceFn<TInterface>(t)())
+                .ToArray();
+        }
+    }
+}
