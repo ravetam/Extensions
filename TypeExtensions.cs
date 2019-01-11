@@ -3,7 +3,7 @@ using System.Reflection.Emit;
 
 namespace Extensions
 {
-    public static class TypeExtensions
+    internal static class TypeExtensions
     {
         public static Func<T> GetCreateInstanceFn<T>(this Type type)
         {
