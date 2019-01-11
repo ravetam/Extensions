@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace Extensions
 {
-    public static class AssemblyExtensions
+    internal static class AssemblyExtensions
     {
         public static TInterface[] GetInstances<TInterface>(this Assembly assembly)
         {
